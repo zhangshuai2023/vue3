@@ -1,6 +1,7 @@
 <script setup lang="ts"> // 在 setup 中，就相当于在 created 周期中
 import { ref, reactive, onMounted, onUpdated, watch, watchEffect, computed, defineProps } from 'vue'
-
+import Helloson from './helloson.vue';
+import { popState,  popClose, globalMixin} from '../mixin/globalMixin'; 
 // -------------   生命周期  ------------
 /*
 const num1 = ref(1);
@@ -70,10 +71,23 @@ defineProps({
   toSetUpSon: String,
 });
 
+
+//----------------   公用组件的使用 ------------
+globalMixin();
+onMounted(()=>{
+  console.log('helloworld 自己的 mount 方法');
+});
+
 </script>
 
 <template>
   <h1>{{ toSetUpSon }}</h1>
+
+  <!--<Helloson></Helloson> -->
+  
+
+  <button @click="popClose">隐藏</button>
+  <div v-if="popState">弹窗</div>
 
 </template>
 
