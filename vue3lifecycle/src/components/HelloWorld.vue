@@ -78,6 +78,24 @@ onMounted(()=>{
   console.log('helloworld 自己的 mount 方法');
 });
 
+// ----------------   子组件的数据暴露给父组件 ------------
+let a= ref(1);
+function f1(){
+  console.log(a.value)
+}
+// 响应式语法糖 跟 ref 有关的响应式数据，都有 $ref 语法糖
+// 每次使用 ref 都要 xxx.value
+// 每次使用 ref 都要引入
+// import { $ref } from 'vue/macros';
+//  let a2 = $ref(1);
+//  console.log(a2);
+ // 加 两个$ 就 转回去
+
+defineExpose({
+  a,
+  f1
+}); // 将对象暴露出去
+
 </script>
 
 <template>
